@@ -1,3 +1,8 @@
+---
+style: text
+title: Selenium2's Regression Tests
+---
+
 p. Selenium2's regression tests live here. There is not a lot to see, from the end user point of view.  This site exists only for the reporting of issues, and the testing of them in respect of preventing regressions.
 
 p. Issues reproduced via this mechanism are much more likely to be fixed by the Selenium developer team, than bug-reports that are only accompanied by a description.
