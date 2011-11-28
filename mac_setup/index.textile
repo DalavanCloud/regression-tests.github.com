@@ -5,25 +5,25 @@ title: Selenium2's Regression Tests - Mac Setup
 
 h2. Setup your sharing prefences
 
+p. In "Preferences" -
+
 !mac_sharing_prefs.png!
 
-Don't copy mine exactly!  
-
-You machine name, and IP address will vary of course.  
+p. Don't copy mine exactly! Your machine name, and IP address will vary of course.  
 
 h2. Clone your fork to the right place
 
-1. cd ~/Sites
-2. git clone https://github.com/<your_github_id>/regression-tests.github.com.git
-3. cd regression-tests.github.com
-4. git checkout -b gh-pages origin/gh-pages
+# cd ~/Sites
+# git clone https://github.com/<your_github_id>/regression-tests.github.com.git
+# cd regression-tests.github.com
+# git checkout -b gh-pages origin/gh-pages
 
-Open a browser at https://<your_ip_address>/~<your_login>/regression-tests.github.com.git/index.textile to check it all works so far.
+p. Open a browser at https://<your_ip_address>/~<your_login>/regression-tests.github.com.git/index.textile to check it all works so far.
 
 h2.  Homebrew
 
-p. Homebrew is the best package manager on the Mac.  You can "install it":http://mxcl.github.com/homebrew/ and then use it to install Git and Groovy:
+p. Homebrew is the best package manager on the Mac.  You can "install it":http://mxcl.github.com/homebrew/ and then use it to install Git and Groovy.  After installing it, run these commands:
 
-1. brew install git
-2. brew install groovy
+# brew install git
+# brew install groovy
 
