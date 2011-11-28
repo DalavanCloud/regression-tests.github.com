@@ -17,12 +17,27 @@ h2. Granting rights.
 
 p. Get your bosses permission to contribute a) the script that reproduces the issue, and b) the contents of the source files in question.  In some cases, you will have to go to a lot of effort to excise imagery, language and features of your forthcoming project.  We do not want to receive notices later to take down pages.  The copyright for this will be the "Software Freedom Conservancy":http://sfconservancy.org/ (SFC), which is the new parent organization for Selenium itself.  Just to be clear by donating fragments of HTML/JavaScript (etc) you are making a grant to SFC to retain these fragments without reference to yourselves.  You're not losing copyright for your own sources elsewhere. You're not revoking copyright for your own sources elsewhere.  In short, this is grant.
 
+h2. Testing the existence of a single previously reported bug
+
+Install Git, Groovy and Firefox for you platform.  Mac-specific instructions "are here":mac_setup_
+
+1. git clone https://github.com/SeleniumHQ/regression-tests.github.com.git
+2. cd regression-tests.github.com
+3. git checkout -b gh-pages origin/gh-pages
+4. groovy issues/2915.groovy
+
+Groovy will download the right version of Selenium2 (which happens silently for a minute or so), then opens Firefox to run the test.  The page in question is just a single input field.  After the test is run, Firefox is closed, and the script prints to the console that it can or cannot reproduce the bug.
+
 h2. How to to make a reproducible bug example
+
+Read about Github, how to use Git to clone something from Github, "Forking" in the context of Github.
 
 1. Get an account on Github.com
 2. Go to https://github.com/SeleniumHQ/regression-tests.github.com, fork it, then clone it using Git to your local computer.    
 3. On a internal deployment of your app that exhibits the bug, navigate to the page in question. 
 4. Using Firefox and the "MAFF addon":https://addons.mozilla.org/en-US/firefox/addon/mozilla-archive-format/ save the page to a zip.
-5. Unzip that to your local computer, and work on it iteratively like we did for https://github.com/SeleniumHQ/regression-tests.github.com/demo/2915/ and https://github.com/SeleniumHQ/regression-tests.github.com/issues/2915.groovy.  You're going to need to serve up the pages on a local web-server while you work through the trial and error.
+5. Unzip that to your local computer, and work on it iteratively like we did for https://github.com/SeleniumHQ/regression-tests.github.com/demo/2915/ and http://github.com/SeleniumHQ/regression-tests.github.com/issues/2915.groovy.  You're going to need to serve up the pages on a local web-server while you work through the trial and error.
 6. Commit the reduced set of the files you your fork (be sure to NOT include any history of your iterative code-reduction exercise)
 7. Push that to your remote Github repo, and initiate the "pull request" so the dev team can act on it.
+
+h2.
