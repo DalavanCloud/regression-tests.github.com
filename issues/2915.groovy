@@ -11,7 +11,7 @@ def driver = new FirefoxDriver()
 
 def domain
 if (args.length == 0) {
-  domain = "http://seleniumhq.github.com/regression-tests.github.com"
+  domain = "http://regression-tests.seleniumhq.org"
 } else {
   domain = args[0]
 }
