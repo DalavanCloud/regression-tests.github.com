@@ -1,0 +1,44 @@
+When trying to simultaneously open Firefox browsers on many X displays, the port 7054 semaphore locking
+routine starts timing out as threads wait for their chance to bind the port.
+
+Prior "fixes" have been put in place that randomized the wait times but under heavy load, 16 at once
+for instance, there just isn't enough time.
+
+The timeout could be extended (it's 45 seconds now) but that seems like a hack.
+
+I propose we allow for a -D arg to be passed in with a unique port range that browsers
+can use to randomly pick their port from.  If they fail to bind they can simply try another one,
+giving up after 45 seconds or a number of attempts or something like that.
+
+----------
+ABOUT THE TEST:
+Implemented in Java with a Maven wrapper (I first tried to duplicate the problem in Python, but can't
+get it to happen there and Groovy was giving me fits.)
+
+----------
+PREREQUISITES:
+- I wrote this on an Ubuntu 11.04x64 Linux machine - should work on any Unix flavor, but can't guarantee
+- You need Xvfb installed
+- Maven 2 or 3
+- Java 5 or better (I'm on 6)
+- Firefox (I'm on 3.6 - not sure if newer versions exhibit the problem but I'd assume they would)
+
+---------
+RUNNING:
+mvn install
+
+Console output should show 16 threads firing up Firefox instances and several failing with stack traces
+similar to the following:
+
+org.openqa.selenium.WebDriverException: Unable to bind to locking port 7054 within 45000 ms
+
+Build info: version: '2.14.0', revision: 'unknown', time: '2011-11-29 13:13:16'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '2.6.38-13-generic', java.version: '1.6.0_26'
+Driver info: driver.version: FirefoxDriver
+	at org.openqa.selenium.internal.SocketLock.lock(SocketLock.java:95)
+	at org.openqa.selenium.firefox.internal.NewProfileExtensionConnection.start(NewProfileExtensionConnection.java:69)
+	at org.openqa.selenium.firefox.FirefoxDriver.startClient(FirefoxDriver.java:147)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:75)
+	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:126)
+	at com.viarun.selenium.BrowserThread$Browser.run(BrowserThread.java:44)
+
