@@ -1,6 +1,5 @@
 @Grapes([
- @Grab("org.seleniumhq.selenium:selenium-java:2.14.0"),
- @GrabExclude('xml-apis:xml-apis')
+ @Grab("org.seleniumhq.selenium:selenium-java:2.33.0")
 ])
 
 import org.openqa.selenium.firefox.FirefoxDriver
@@ -21,7 +20,7 @@ driver.get domain + "/demo/2915/index.html"
 try {
   def pwField = driver.findElement(By.id("cheddarCheeseLoginPassword"))
   pwField.sendKeys("Selenium") // this does not barf.
-  String pw = pwField.getText() // barfs here if bug is present
+  String pw = pwField.getAttribute("value") // barfs here if bug is present
   if (pw == "Selenium") {
       println "Issue 2915 not present, field value retrieved" 
   } else {
@@ -29,7 +28,7 @@ try {
   } 
 } catch(StaleElementReferenceException e) {
   println "Issue 2915 present, get via workaround? " 
-  println "locate it again, and get the field value: '" + driver.findElement(By.id("cheddarCheeseLoginPassword")).getText() + "'"
+  println "locate it again, and get the field value: '" + driver.findElement(By.id("cheddarCheeseLoginPassword")).getAttribute("value") + "'"
 } finally {
   driver.quit()
 }
